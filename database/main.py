@@ -1,9 +1,7 @@
 import sys, os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from database.connection import get_connection
-from database.schema import create_tables
-from database.queries import insert_user, query_all_users
+from database.aux import *
 
 def main():
     conn = get_connection()
