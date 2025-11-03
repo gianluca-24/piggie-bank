@@ -1,0 +1,97 @@
+/* Flex layout for left and right content */
+.contact-content {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.contact-left,
+.contact-right {
+  flex: 1;
+  min-width: 300px;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.contact-form input,
+.contact-form textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.contact-form button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.contact-form button:hover {
+  background-color: #0056b3;
+}
+
+
+.contact-image {
+  margin-top: 20px;
+  width: 100%;             /* Fill container width but shrink on small screens */
+  max-width: 300px;        /* Never get bigger than 300px */
+  height: auto;            /* Maintain aspect ratio */
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: block;          /* Centers easily if you use margin auto */
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Responsive design */
+@media (max-width: 768px) {
+  .contact-page {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
+
+  .contact-left,
+  .contact-right {
+    width: 90%;
+  }
+
+  .contact-left {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}
+
+
+
+/* Title styling */
+.contact-title-wrapper {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contact-title {
+  font-size: 2.2rem;
+  color: #333;
+}
+
