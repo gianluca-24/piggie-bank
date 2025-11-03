@@ -2,9 +2,12 @@ def create_table_user(conn):
     """Create users table if it does not exist."""
     query ="""
             CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER PRIMARY KEY,
             name TEXT NOT NULL,
-            email TEXT NOT NULL UNIQUE
+            surname TEXT NOT NULL,
+            birthday TIMESTAMP NOT NULL,
+            email TEXT NOT NULL UNIQUE,
+            password TEXT NOT NULL
         )
         """
     conn.execute(query)

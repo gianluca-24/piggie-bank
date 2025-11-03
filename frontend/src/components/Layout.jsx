@@ -8,6 +8,7 @@ export default function Layout() {
 
   const handleLogout = () => {
     // Here you can clear user session or tokens if needed
+    localStorage.removeItem("user");
     navigate('/');
   };
 

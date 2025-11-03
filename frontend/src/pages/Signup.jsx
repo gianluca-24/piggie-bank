@@ -30,19 +30,58 @@ export default function Signup() {
     return age;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
-      return;
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (formData.password !== formData.confirmPassword) {
+    alert("Passwords do not match!");
+    return;
+  }
+
+  const age = calculateAge(formData.birthday);
+  if (age < 18) {
+    alert("You must be at least 18 years old to sign up.");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/signup", {  // 👈 your FastAPI endpoint
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        surname: formData.surname,
+        birthday: formData.birthday,
+        email: formData.email,
+        password: formData.password,
+      }),
+    });
+
+if (!response.ok) {
+  const errorData = await response.json().catch(() => ({})); // safely parse JSON
+  const errorMessage = errorData.detail || "Unknown error occurred.";
+  alert("Signup failed: " + errorMessage);
+  return;
     }
-    const age = calculateAge(formData.birthday);
-    if (age < 18) {
-      alert("You must be at least 18 years old to sign up.");
-      return;
-    }
-    navigate('/home');
-  };
+
+    const data = await response.json();
+    console.log("✅ Signup successful:", data);
+    // <-- store session info in localStorage
+    localStorage.setItem("user", JSON.stringify({
+      user_id: data.user_id,
+      name: data.name,
+      email: data.email,
+      token: data.token,
+    }));
+    // alert("Signup successful!");
+    navigate("/home");
+  } catch (error) {
+    console.error("❌ Error during signup:", error);
+    alert("Error connecting to server.");
+  }
+};
 
   return (
     <div style={{ maxWidth: "400px", margin: "50px auto", textAlign: "left" }}>
