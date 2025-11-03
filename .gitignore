@@ -1,5 +1,6 @@
 .env
 piggie.db
+piggie.db
 __pycache__
 # add node modules folder
 node_modules/
