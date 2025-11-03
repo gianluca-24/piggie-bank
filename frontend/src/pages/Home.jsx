@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import './css/Home.css';
 
 export default function Home() {
   const location = useLocation();
